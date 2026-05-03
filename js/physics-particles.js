@@ -251,17 +251,18 @@
 })();
 
 (() => {
-  const ATRI_IMAGE = "https://images4.alphacoders.com/136/1369875.jpeg";
+  const ATRI_AVATAR = "https://images7.alphacoders.com/136/1368598.jpeg";
+  const ATRI_BANNER = "https://images4.alphacoders.com/136/1369875.jpeg";
   const OLD_AVATARS = [
     "https://bu.dusays.com/2023/04/27/64496e511b09c.jpg",
     "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",
   ];
 
-  function setImage(img) {
+  function setImage(img, url) {
     if (!img) return;
-    img.src = ATRI_IMAGE;
-    img.setAttribute("data-lazy-src", ATRI_IMAGE);
-    img.setAttribute("data-src", ATRI_IMAGE);
+    img.src = url;
+    img.setAttribute("data-lazy-src", url);
+    img.setAttribute("data-src", url);
     img.removeAttribute("srcset");
   }
 
@@ -271,24 +272,22 @@
       const lazy = img.getAttribute("data-lazy-src") || "";
       const isOldAvatar = OLD_AVATARS.some((oldUrl) => src === oldUrl || lazy === oldUrl);
 
-      if (
-        isOldAvatar ||
-        img.classList.contains("avatar-img") ||
-        img.classList.contains("loading-img") ||
-        img.classList.contains("post_bg") ||
-        img.classList.contains("todayCard-cover")
-      ) {
-        setImage(img);
+      if (isOldAvatar || img.classList.contains("avatar-img") || img.classList.contains("loading-img")) {
+        setImage(img, ATRI_AVATAR);
+      }
+
+      if (img.classList.contains("post_bg") || img.classList.contains("todayCard-cover")) {
+        setImage(img, ATRI_BANNER);
       }
     });
 
     document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach((meta) => {
-      meta.setAttribute("content", ATRI_IMAGE);
+      meta.setAttribute("content", ATRI_AVATAR);
     });
 
     const banner = document.getElementById("random-banner");
     if (banner) {
-      banner.style.backgroundImage = `linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(245,250,255,0.84) 42%, rgba(222,243,255,0.42) 100%), url("${ATRI_IMAGE}")`;
+      banner.style.backgroundImage = `linear-gradient(90deg, rgba(255,255,255,0.74) 0%, rgba(245,250,255,0.50) 42%, rgba(222,243,255,0.18) 100%), url("${ATRI_BANNER}")`;
     }
   }
 

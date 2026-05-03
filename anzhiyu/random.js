@@ -136,3 +136,106 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
   document.addEventListener("pjax:complete", run);
   window.addEventListener("load", run, { once: true });
 })();
+(function applyYanliBranding(){
+  if (window.__yanliBrandingInstalled) return;
+  window.__yanliBrandingInstalled = true;
+
+  var attributeNames = ["title", "alt", "aria-label", "content", "value"];
+  var skipTextTags = { SCRIPT: true, STYLE: true, NOSCRIPT: true, TEXTAREA: true, INPUT: true };
+  var scheduled = false;
+
+  function replaceBrandText(value) {
+    if (!value || typeof value !== "string") return value;
+    return value
+      .replace(/Theme-AnZhiYu/g, "言里主页")
+      .replace(/John Doe/g, "言里")
+      .replace(/Hexo/g, "言里")
+      .replace(/\$ hexo/g, "$ 言里");
+  }
+
+  function replaceTextNodes(root) {
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        var parent = node.parentElement;
+        if (!parent || skipTextTags[parent.tagName]) return NodeFilter.FILTER_REJECT;
+        return /Hexo|John Doe|Theme-AnZhiYu|\$ hexo/.test(node.nodeValue)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    var node;
+    while ((node = walker.nextNode())) {
+      node.nodeValue = replaceBrandText(node.nodeValue);
+    }
+  }
+
+  function replaceAttributes(root) {
+    if (!root) return;
+    var elements = root.querySelectorAll ? root.querySelectorAll("*") : [];
+    elements.forEach(function(element) {
+      attributeNames.forEach(function(name) {
+        if (!element.hasAttribute || !element.hasAttribute(name)) return;
+        var current = element.getAttribute(name);
+        var next = replaceBrandText(current);
+        if (next !== current) element.setAttribute(name, next);
+      });
+    });
+  }
+
+  function updateRuntimeConfig() {
+    document.title = replaceBrandText(document.title);
+
+    if (window.GLOBAL_CONFIG_SITE) {
+      window.GLOBAL_CONFIG_SITE.title = replaceBrandText(window.GLOBAL_CONFIG_SITE.title || "言里");
+      window.GLOBAL_CONFIG_SITE.configTitle = replaceBrandText(window.GLOBAL_CONFIG_SITE.configTitle || "言里");
+    }
+
+    document.querySelectorAll('meta[name="author"], meta[name="copyright"], meta[property="article:author"], meta[property="og:site_name"], meta[property="og:description"], meta[name="description"]').forEach(function(meta) {
+      var current = meta.getAttribute("content") || "";
+      var next = replaceBrandText(current);
+      if (next !== current) meta.setAttribute("content", next);
+    });
+  }
+
+  function run(root) {
+    updateRuntimeConfig();
+    replaceTextNodes(root || document.body);
+    replaceAttributes(document.documentElement);
+  }
+
+  function schedule(root) {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function() {
+      scheduled = false;
+      run(root || document.body);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function() { run(document.body); }, { once: true });
+  } else {
+    run(document.body);
+  }
+
+  window.addEventListener("load", function() { run(document.body); }, { once: true });
+  document.addEventListener("pjax:complete", function() { run(document.body); });
+
+  var observer = new MutationObserver(function(mutations) {
+    for (var i = 0; i < mutations.length; i += 1) {
+      if (mutations[i].addedNodes && mutations[i].addedNodes.length) {
+        schedule(document.body);
+        return;
+      }
+    }
+  });
+
+  function observeBody() {
+    if (document.body) observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.body) observeBody();
+  else document.addEventListener("DOMContentLoaded", observeBody, { once: true });
+})();

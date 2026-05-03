@@ -29,7 +29,7 @@
   min-height: 376px;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 250, 255, 0.84) 42%, rgba(222, 243, 255, 0.42) 100%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.74) 0%, rgba(245, 250, 255, 0.50) 42%, rgba(222, 243, 255, 0.18) 100%),
     url("https://images4.alphacoders.com/136/1369875.jpeg") center 46% / cover no-repeat !important;
 }
 
@@ -39,8 +39,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 18%, rgba(66, 90, 239, 0.14), transparent 30%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(125, 210, 255, 0.12));
+    radial-gradient(circle at 18% 18%, rgba(66, 90, 239, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(125, 210, 255, 0.10));
 }
 
 #peoplecanvas {
@@ -48,22 +48,19 @@
 }
 
 .avatar-img,
-.loading-img,
+.loading-img {
+  content: url("https://images7.alphacoders.com/136/1368598.jpeg") !important;
+  object-fit: cover !important;
+  object-position: 36% 42% !important;
+  background: #eef7ff !important;
+}
+
 .post_bg,
 .todayCard-cover {
   content: url("https://images4.alphacoders.com/136/1369875.jpeg") !important;
   object-fit: cover !important;
-  background: #eef7ff !important;
-}
-
-.avatar-img,
-.loading-img {
-  object-position: 39% 58% !important;
-}
-
-.post_bg,
-.todayCard-cover {
   object-position: 45% 52% !important;
+  background: #eef7ff !important;
 }
 
 .author-info-avatar .avatar-img {

@@ -24,9 +24,65 @@
   z-index: 2;
 }
 
+#random-banner {
+  position: relative;
+  min-height: 376px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 250, 255, 0.84) 42%, rgba(222, 243, 255, 0.42) 100%),
+    url("https://images4.alphacoders.com/136/1369875.jpeg") center 46% / cover no-repeat !important;
+}
+
+#random-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(66, 90, 239, 0.14), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(125, 210, 255, 0.12));
+}
+
+#peoplecanvas {
+  display: none !important;
+}
+
+.avatar-img,
+.loading-img,
+.post_bg,
+.todayCard-cover {
+  content: url("https://images4.alphacoders.com/136/1369875.jpeg") !important;
+  object-fit: cover !important;
+  background: #eef7ff !important;
+}
+
+.avatar-img,
+.loading-img {
+  object-position: 39% 58% !important;
+}
+
+.post_bg,
+.todayCard-cover {
+  object-position: 45% 52% !important;
+}
+
+.author-info-avatar .avatar-img {
+  box-shadow: 0 8px 24px rgba(66, 90, 239, 0.18);
+}
+
+#recent-posts .post_cover img.post_bg,
+.todayCard-cover {
+  opacity: 1 !important;
+}
+
 @media (max-width: 768px) {
   #physics-particle-field {
     opacity: 0.34;
+  }
+
+  #random-banner {
+    min-height: 260px;
+    background-position: 44% 48% !important;
   }
 }
 

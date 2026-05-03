@@ -28,9 +28,7 @@
   position: relative;
   min-height: 376px;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.74) 0%, rgba(245, 250, 255, 0.50) 42%, rgba(222, 243, 255, 0.18) 100%),
-    url("https://images4.alphacoders.com/136/1369875.jpeg") center 46% / cover no-repeat !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.74), rgba(245, 250, 255, 0.50) 42%, rgba(222, 243, 255, 0.18)), url("https://images4.alphacoders.com/136/1369875.jpeg") center 46% / cover no-repeat !important;
 }
 
 #random-banner::before {
@@ -38,9 +36,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(66, 90, 239, 0.12), transparent 30%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(125, 210, 255, 0.10));
+  background: radial-gradient(circle at 18% 18%, rgba(66, 90, 239, 0.12), transparent 30%), linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(125, 210, 255, 0.10));
 }
 
 #peoplecanvas {
@@ -76,10 +72,7 @@
   height: clamp(340px, 42vh, 430px) !important;
   min-height: 340px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(66, 90, 239, 0.15), transparent 32%),
-    radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.14), transparent 28%),
-    linear-gradient(135deg, rgba(247, 250, 255, 0.98) 0%, rgba(235, 243, 255, 0.90) 52%, rgba(248, 251, 255, 0.98) 100%) !important;
+  background: radial-gradient(circle at 18% 24%, rgba(66, 90, 239, 0.15), transparent 32%), radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.14), transparent 28%), linear-gradient(135deg, rgba(247, 250, 255, 0.98), rgba(235, 243, 255, 0.90) 52%, rgba(248, 251, 255, 0.98)) !important;
 }
 
 #page-header.post-bg::before {
@@ -88,9 +81,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.34) 54%, rgba(255, 255, 255, 0.72) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(246, 249, 255, 0.18) 70%, rgba(246, 249, 255, 0.92) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.34) 54%, rgba(255, 255, 255, 0.72)), linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(246, 249, 255, 0.18) 70%, rgba(246, 249, 255, 0.92));
 }
 
 #page-header.post-bg::after {
@@ -102,7 +93,7 @@
   z-index: 0;
   height: 72px;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(246, 249, 255, 0) 0%, rgba(246, 249, 255, 0.70) 82%);
+  background: linear-gradient(180deg, rgba(246, 249, 255, 0), rgba(246, 249, 255, 0.70) 82%);
 }
 
 #page-header.post-bg #post-top-cover {
@@ -113,7 +104,6 @@
 
 #page-header.post-bg #nav {
   background: rgba(255, 255, 255, 0.74);
-  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   box-shadow: 0 8px 30px rgba(61, 78, 110, 0.08);
 }
@@ -176,27 +166,19 @@
   background: linear-gradient(90deg, #425aef, #47c9df);
 }
 
-#page-header.post-bg #post-info #post-meta {
-  width: auto;
-  color: #58657a !important;
-  font-size: 0.95rem;
-  gap: 0.18rem;
-}
-
+#page-header.post-bg #post-info #post-meta,
 #page-header.post-bg #post-info #post-meta a,
 #page-header.post-bg #post-info #post-meta span,
 #page-header.post-bg #post-info #post-meta time,
 #page-header.post-bg #post-info #post-meta .post-meta-icon {
-  color: inherit !important;
+  color: #58657a !important;
   text-shadow: none !important;
 }
 
-#page-header.post-bg .post-meta-categories {
-  color: #3346b8 !important;
-  background: rgba(66, 90, 239, 0.10) !important;
-  border: 1px solid rgba(66, 90, 239, 0.18);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+#page-header.post-bg #post-info #post-meta {
+  width: auto;
+  font-size: 0.95rem;
+  gap: 0.18rem;
 }
 
 #page-header.post-bg + main {
@@ -218,7 +200,6 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.92) !important;
   box-shadow: 0 24px 80px rgba(55, 75, 110, 0.13) !important;
-  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
 
@@ -252,7 +233,6 @@
   border: 1px solid rgba(115, 133, 170, 0.16);
   background: rgba(255, 255, 255, 0.88) !important;
   box-shadow: 0 18px 50px rgba(55, 75, 110, 0.12);
-  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
 }
 
@@ -263,9 +243,7 @@
 
 #page-header.post-bg + main #aside-content > .card-widget.card-info::before {
   height: 82px;
-  background:
-    radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.95), transparent 26%),
-    linear-gradient(135deg, rgba(66, 90, 239, 0.20), rgba(72, 201, 223, 0.20)) !important;
+  background: radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.95), transparent 26%), linear-gradient(135deg, rgba(66, 90, 239, 0.20), rgba(72, 201, 223, 0.20)) !important;
   animation: none !important;
 }
 
@@ -336,10 +314,7 @@ body:has(#page-header.post-bg) #physics-particle-field {
 }
 
 [data-theme="dark"] #page-header.post-bg {
-  background:
-    radial-gradient(circle at 18% 24%, rgba(84, 113, 255, 0.22), transparent 32%),
-    radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.18), transparent 28%),
-    linear-gradient(135deg, rgba(18, 23, 36, 0.98) 0%, rgba(25, 33, 52, 0.94) 100%) !important;
+  background: radial-gradient(circle at 18% 24%, rgba(84, 113, 255, 0.22), transparent 32%), radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.18), transparent 28%), linear-gradient(135deg, rgba(18, 23, 36, 0.98), rgba(25, 33, 52, 0.94)) !important;
 }
 
 [data-theme="dark"] #page-header.post-bg::before {
@@ -347,7 +322,7 @@ body:has(#page-header.post-bg) #physics-particle-field {
 }
 
 [data-theme="dark"] #page-header.post-bg::after {
-  background: linear-gradient(180deg, rgba(18, 23, 36, 0) 0%, rgba(18, 23, 36, 0.55) 82%);
+  background: linear-gradient(180deg, rgba(18, 23, 36, 0), rgba(18, 23, 36, 0.55) 82%);
 }
 
 [data-theme="dark"] #page-header.post-bg #post-info .post-title,
@@ -363,7 +338,11 @@ body:has(#page-header.post-bg) #physics-particle-field {
   background: rgba(18, 23, 36, 0.70);
 }
 
-[data-theme="dark"] #page-header.post-bg #post-info #post-meta {
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta,
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta a,
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta span,
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta time,
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta .post-meta-icon {
   color: #aab6cc !important;
 }
 
@@ -435,6 +414,7 @@ body:has(#page-header.post-bg) #physics-particle-field {
     margin-top: -28px;
     padding-right: 12px;
     padding-left: 12px;
+    background: transparent !important;
   }
 
   #page-header.post-bg + main div#post {

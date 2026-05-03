@@ -249,3 +249,55 @@
   resize();
   render();
 })();
+
+(() => {
+  const ATRI_IMAGE = "https://images4.alphacoders.com/136/1369875.jpeg";
+  const OLD_AVATARS = [
+    "https://bu.dusays.com/2023/04/27/64496e511b09c.jpg",
+    "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",
+  ];
+
+  function setImage(img) {
+    if (!img) return;
+    img.src = ATRI_IMAGE;
+    img.setAttribute("data-lazy-src", ATRI_IMAGE);
+    img.setAttribute("data-src", ATRI_IMAGE);
+    img.removeAttribute("srcset");
+  }
+
+  function applyAtriHomepageFixes() {
+    document.querySelectorAll("img").forEach((img) => {
+      const src = img.getAttribute("src") || "";
+      const lazy = img.getAttribute("data-lazy-src") || "";
+      const isOldAvatar = OLD_AVATARS.some((oldUrl) => src === oldUrl || lazy === oldUrl);
+
+      if (
+        isOldAvatar ||
+        img.classList.contains("avatar-img") ||
+        img.classList.contains("loading-img") ||
+        img.classList.contains("post_bg") ||
+        img.classList.contains("todayCard-cover")
+      ) {
+        setImage(img);
+      }
+    });
+
+    document.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]').forEach((meta) => {
+      meta.setAttribute("content", ATRI_IMAGE);
+    });
+
+    const banner = document.getElementById("random-banner");
+    if (banner) {
+      banner.style.backgroundImage = `linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(245,250,255,0.84) 42%, rgba(222,243,255,0.42) 100%), url("${ATRI_IMAGE}")`;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyAtriHomepageFixes, { once: true });
+  } else {
+    applyAtriHomepageFixes();
+  }
+
+  window.addEventListener("load", applyAtriHomepageFixes, { once: true });
+  document.addEventListener("pjax:complete", applyAtriHomepageFixes);
+})();

@@ -295,16 +295,21 @@
 }
 
 #page-header.post-bg + main #aside-content .card-info .author-info__description {
-  position: relative;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
   z-index: 1;
   display: flex;
-  min-height: 56px;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 !important;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   color: #334056;
   text-align: center;
   opacity: 1 !important;
+  filter: none !important;
 }
 
 #page-header.post-bg + main #aside-content .card-info .author-info__description::before {

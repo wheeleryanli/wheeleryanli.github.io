@@ -1,0 +1,37 @@
+#physics-particle-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.46;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] #physics-particle-field {
+  opacity: 0.34;
+  mix-blend-mode: screen;
+}
+
+#body-wrap,
+#rightside,
+#sidebar,
+#nav-music,
+#rightMenu,
+#popup-window {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  #physics-particle-field {
+    opacity: 0.34;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #physics-particle-field {
+    opacity: 0.28;
+  }
+}

@@ -185,7 +185,14 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
   }
 
   function updateRuntimeConfig() {
-    document.title = replaceBrandText(document.title);
+    var nextTitle = replaceBrandText(document.title);
+    document.title = nextTitle;
+
+    var titleElement = document.querySelector("title");
+    if (titleElement && titleElement.textContent !== nextTitle) {
+      titleElement.textContent = replaceBrandText(titleElement.textContent);
+      document.title = replaceBrandText(document.title);
+    }
 
     if (window.GLOBAL_CONFIG_SITE) {
       window.GLOBAL_CONFIG_SITE.title = replaceBrandText(window.GLOBAL_CONFIG_SITE.title || "言里");
@@ -200,8 +207,9 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
   }
 
   function run(root) {
+    var target = root || document.documentElement;
     updateRuntimeConfig();
-    replaceTextNodes(root || document.body);
+    replaceTextNodes(target);
     replaceAttributes(document.documentElement);
   }
 
@@ -210,32 +218,37 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
     scheduled = true;
     requestAnimationFrame(function() {
       scheduled = false;
-      run(root || document.body);
+      run(root || document.documentElement);
     });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() { run(document.body); }, { once: true });
+    document.addEventListener("DOMContentLoaded", function() { run(document.documentElement); }, { once: true });
   } else {
-    run(document.body);
+    run(document.documentElement);
   }
 
-  window.addEventListener("load", function() { run(document.body); }, { once: true });
-  document.addEventListener("pjax:complete", function() { run(document.body); });
+  window.addEventListener("load", function() { run(document.documentElement); }, { once: true });
+  document.addEventListener("pjax:complete", function() { run(document.documentElement); });
 
   var observer = new MutationObserver(function(mutations) {
     for (var i = 0; i < mutations.length; i += 1) {
-      if (mutations[i].addedNodes && mutations[i].addedNodes.length) {
-        schedule(document.body);
+      if (mutations[i].type === "characterData" || mutations[i].type === "attributes" || (mutations[i].addedNodes && mutations[i].addedNodes.length)) {
+        schedule(document.documentElement);
         return;
       }
     }
   });
 
-  function observeBody() {
+  function observeBrandingTargets() {
+    if (document.head) observer.observe(document.head, { attributes: true, childList: true, characterData: true, subtree: true });
     if (document.body) observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  if (document.body) observeBody();
-  else document.addEventListener("DOMContentLoaded", observeBody, { once: true });
+  if (document.head || document.body) observeBrandingTargets();
+  else document.addEventListener("DOMContentLoaded", observeBrandingTargets, { once: true });
+
+  [300, 1000, 2500, 5000, 8000].forEach(function(delay) {
+    setTimeout(function() { run(document.documentElement); }, delay);
+  });
 })();

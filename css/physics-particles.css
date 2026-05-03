@@ -99,10 +99,10 @@
   right: 0;
   bottom: -1px;
   left: 0;
-  z-index: 1;
-  height: 118px;
+  z-index: 0;
+  height: 72px;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(246, 249, 255, 0) 0%, rgba(246, 249, 255, 0.94) 82%);
+  background: linear-gradient(180deg, rgba(246, 249, 255, 0) 0%, rgba(246, 249, 255, 0.70) 82%);
 }
 
 #page-header.post-bg #post-top-cover {
@@ -135,6 +135,25 @@
   z-index: 3;
   justify-content: center;
   padding-top: 3.8rem;
+}
+
+#page-header.post-bg #post-firstinfo {
+  margin-bottom: 0.35rem;
+}
+
+#page-header.post-bg #post-firstinfo .meta-firstline a.post-meta-original {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 10px;
+  border: 1px solid rgba(66, 90, 239, 0.18);
+  border-radius: 999px;
+  background: rgba(66, 90, 239, 0.10) !important;
+  color: #3346b8 !important;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: none !important;
 }
 
 #page-header.post-bg #post-info .post-title {
@@ -178,6 +197,11 @@
   border: 1px solid rgba(66, 90, 239, 0.18);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+}
+
+#page-header.post-bg + main {
+  position: relative;
+  z-index: 5;
 }
 
 #page-header.post-bg + main #content-inner.layout {
@@ -318,7 +342,7 @@ body:has(#page-header.post-bg) #physics-particle-field {
 }
 
 [data-theme="dark"] #page-header.post-bg::after {
-  background: linear-gradient(180deg, rgba(18, 23, 36, 0) 0%, rgba(18, 23, 36, 0.94) 82%);
+  background: linear-gradient(180deg, rgba(18, 23, 36, 0) 0%, rgba(18, 23, 36, 0.55) 82%);
 }
 
 [data-theme="dark"] #page-header.post-bg #post-info .post-title,
@@ -336,6 +360,12 @@ body:has(#page-header.post-bg) #physics-particle-field {
 
 [data-theme="dark"] #page-header.post-bg #post-info #post-meta {
   color: #aab6cc !important;
+}
+
+[data-theme="dark"] #page-header.post-bg #post-firstinfo .meta-firstline a.post-meta-original {
+  border-color: rgba(125, 150, 255, 0.32);
+  background: rgba(84, 113, 255, 0.18) !important;
+  color: #dbe4ff !important;
 }
 
 [data-theme="dark"] #page-header.post-bg + main .layout > div:first-child:not(.recent-posts),

@@ -72,6 +72,299 @@
   opacity: 1 !important;
 }
 
+#page-header.post-bg {
+  height: clamp(340px, 42vh, 430px) !important;
+  min-height: 340px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(66, 90, 239, 0.15), transparent 32%),
+    radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.14), transparent 28%),
+    linear-gradient(135deg, rgba(247, 250, 255, 0.98) 0%, rgba(235, 243, 255, 0.90) 52%, rgba(248, 251, 255, 0.98) 100%) !important;
+}
+
+#page-header.post-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.34) 54%, rgba(255, 255, 255, 0.72) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(246, 249, 255, 0.18) 70%, rgba(246, 249, 255, 0.92) 100%);
+}
+
+#page-header.post-bg::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 1;
+  height: 118px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(246, 249, 255, 0) 0%, rgba(246, 249, 255, 0.94) 82%);
+}
+
+#page-header.post-bg #post-top-cover {
+  z-index: 0;
+  opacity: 0.12;
+  filter: blur(12px) saturate(120%) brightness(1.04) !important;
+}
+
+#page-header.post-bg #nav {
+  background: rgba(255, 255, 255, 0.74);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 30px rgba(61, 78, 110, 0.08);
+}
+
+#page-header.post-bg #nav #blog_name a,
+#page-header.post-bg #nav .mask-name-container a,
+#page-header.post-bg #nav #menus a,
+#page-header.post-bg #nav #nav-right .nav-button a,
+#page-header.post-bg #nav #nav-right #toggle-menu a {
+  color: #243044 !important;
+  text-shadow: none !important;
+}
+
+#page-header.post-bg #nav #center-console + label i {
+  background: #243044 !important;
+}
+
+#page-header.post-bg #post-info {
+  z-index: 3;
+  justify-content: center;
+  padding-top: 3.8rem;
+}
+
+#page-header.post-bg #post-info .post-title {
+  max-width: 760px;
+  margin: 0.7rem 0 1rem !important;
+  color: #18223b !important;
+  font-size: clamp(2rem, 4.2vw, 3.55rem);
+  line-height: 1.14;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+#page-header.post-bg #post-info .post-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #425aef, #47c9df);
+}
+
+#page-header.post-bg #post-info #post-meta {
+  width: auto;
+  color: #58657a !important;
+  font-size: 0.95rem;
+  gap: 0.18rem;
+}
+
+#page-header.post-bg #post-info #post-meta a,
+#page-header.post-bg #post-info #post-meta span,
+#page-header.post-bg #post-info #post-meta time,
+#page-header.post-bg #post-info #post-meta .post-meta-icon {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+#page-header.post-bg .post-meta-categories {
+  color: #3346b8 !important;
+  background: rgba(66, 90, 239, 0.10) !important;
+  border: 1px solid rgba(66, 90, 239, 0.18);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+#page-header.post-bg + main #content-inner.layout {
+  position: relative;
+  z-index: 4;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: -54px;
+  padding-top: 0;
+}
+
+#page-header.post-bg + main .layout > div:first-child:not(.recent-posts) {
+  border: 1px solid rgba(115, 133, 170, 0.16) !important;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92) !important;
+  box-shadow: 0 24px 80px rgba(55, 75, 110, 0.13) !important;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+#page-header.post-bg + main div#post {
+  padding: clamp(1.6rem, 2.4vw, 3rem) clamp(1.35rem, 3vw, 3.4rem);
+}
+
+#page-header.post-bg + main #article-container {
+  max-width: 780px;
+  margin: 0 auto;
+  color: #30384a;
+  font-size: 1.04rem;
+  line-height: 2.05;
+}
+
+#page-header.post-bg + main #article-container p {
+  margin: 0 0 1.55rem;
+}
+
+#page-header.post-bg + main #article-container p:first-child {
+  margin-bottom: 2rem;
+  padding: 1.15rem 1.25rem;
+  border-left: 4px solid #425aef;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(66, 90, 239, 0.08), rgba(73, 201, 223, 0.08));
+  color: #1d2740;
+  font-weight: 600;
+}
+
+#page-header.post-bg + main #aside-content > .card-widget {
+  border: 1px solid rgba(115, 133, 170, 0.16);
+  background: rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 18px 50px rgba(55, 75, 110, 0.12);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+#page-header.post-bg + main #aside-content > .card-widget.card-info {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88) !important;
+}
+
+#page-header.post-bg + main #aside-content > .card-widget.card-info::before {
+  height: 82px;
+  background:
+    radial-gradient(circle at 24% 12%, rgba(255, 255, 255, 0.95), transparent 26%),
+    linear-gradient(135deg, rgba(66, 90, 239, 0.20), rgba(72, 201, 223, 0.20)) !important;
+  animation: none !important;
+}
+
+#page-header.post-bg + main #aside-content > .card-widget.card-info > .card-content {
+  display: flex;
+  min-height: auto !important;
+  padding: 24px 22px 22px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#page-header.post-bg + main #aside-content .card-info .author-info-avatar {
+  z-index: 1;
+  width: 96px;
+  height: 96px;
+  margin: 18px auto 14px !important;
+}
+
+#page-header.post-bg + main #aside-content .card-info .author-info-avatar img {
+  border: 4px solid rgba(255, 255, 255, 0.92) !important;
+}
+
+#page-header.post-bg + main #aside-content .card-info:hover .author-info-avatar,
+#page-header.post-bg + main #aside-content .card-info:hover .author-status {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+#page-header.post-bg + main #aside-content .card-info .author-info__description {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 56px;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #334056;
+  text-align: center;
+  opacity: 1 !important;
+}
+
+#page-header.post-bg + main #aside-content .card-info .author-info__description::before {
+  content: "言里";
+  color: #1f2a44;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+#page-header.post-bg + main #aside-content .card-info .author-info__description::after {
+  content: "物理学、科研和模型工具";
+  color: #68758b;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+#page-header.post-bg + main #aside-content #card-wechat {
+  display: none !important;
+}
+
+body:has(#page-header.post-bg) #physics-particle-field {
+  opacity: 0.24;
+}
+
+[data-theme="dark"] #page-header.post-bg {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(84, 113, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 82% 14%, rgba(72, 201, 223, 0.18), transparent 28%),
+    linear-gradient(135deg, rgba(18, 23, 36, 0.98) 0%, rgba(25, 33, 52, 0.94) 100%) !important;
+}
+
+[data-theme="dark"] #page-header.post-bg::before {
+  background: linear-gradient(180deg, rgba(15, 18, 28, 0.28), rgba(15, 18, 28, 0.82));
+}
+
+[data-theme="dark"] #page-header.post-bg::after {
+  background: linear-gradient(180deg, rgba(18, 23, 36, 0) 0%, rgba(18, 23, 36, 0.94) 82%);
+}
+
+[data-theme="dark"] #page-header.post-bg #post-info .post-title,
+[data-theme="dark"] #page-header.post-bg #nav #blog_name a,
+[data-theme="dark"] #page-header.post-bg #nav .mask-name-container a,
+[data-theme="dark"] #page-header.post-bg #nav #menus a,
+[data-theme="dark"] #page-header.post-bg #nav #nav-right .nav-button a,
+[data-theme="dark"] #page-header.post-bg #nav #nav-right #toggle-menu a {
+  color: #eef4ff !important;
+}
+
+[data-theme="dark"] #page-header.post-bg #nav {
+  background: rgba(18, 23, 36, 0.70);
+}
+
+[data-theme="dark"] #page-header.post-bg #post-info #post-meta {
+  color: #aab6cc !important;
+}
+
+[data-theme="dark"] #page-header.post-bg + main .layout > div:first-child:not(.recent-posts),
+[data-theme="dark"] #page-header.post-bg + main #aside-content > .card-widget {
+  border-color: rgba(128, 145, 190, 0.22) !important;
+  background: rgba(25, 31, 46, 0.92) !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22) !important;
+}
+
+[data-theme="dark"] #page-header.post-bg + main #article-container,
+[data-theme="dark"] #page-header.post-bg + main #aside-content .card-info .author-info__description {
+  color: #d7deeb;
+}
+
+[data-theme="dark"] #page-header.post-bg + main #article-container p:first-child {
+  background: linear-gradient(135deg, rgba(84, 113, 255, 0.16), rgba(73, 201, 223, 0.12));
+  color: #eef4ff;
+}
+
+@media (max-width: 1200px) {
+  #page-header.post-bg + main #content-inner.layout {
+    margin-top: -40px;
+  }
+
+  #page-header.post-bg + main #aside-content {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   #physics-particle-field {
     opacity: 0.34;
@@ -80,6 +373,47 @@
   #random-banner {
     min-height: 260px;
     background-position: 44% 48% !important;
+  }
+
+  #page-header.post-bg {
+    height: 320px !important;
+    min-height: 320px;
+  }
+
+  #page-header.post-bg #post-info {
+    padding: 7.4rem 6% 0 !important;
+    align-items: flex-start !important;
+  }
+
+  #page-header.post-bg #post-info .post-title {
+    max-width: 100%;
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  #page-header.post-bg #post-info .post-title::after {
+    width: 56px;
+    margin-top: 14px;
+  }
+
+  #page-header.post-bg + main #content-inner.layout {
+    margin-top: -28px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  #page-header.post-bg + main div#post {
+    padding: 1.15rem;
+  }
+
+  #page-header.post-bg + main #article-container {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.95;
+  }
+
+  #page-header.post-bg + main #article-container p:first-child {
+    padding: 1rem;
   }
 }
 

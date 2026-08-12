@@ -252,7 +252,7 @@
 
 (() => {
   const ATRI_AVATAR = "https://images7.alphacoders.com/136/1368598.jpeg";
-  const ATRI_BANNER = "https://images4.alphacoders.com/136/1369875.jpeg";
+  const ATRI_BANNER = "/img/atri-in-sunlit-seaside-study.webp";
   const OLD_AVATARS = [
     "https://bu.dusays.com/2023/04/27/64496e511b09c.jpg",
     "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",

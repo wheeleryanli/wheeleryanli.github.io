@@ -23,7 +23,7 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
 })();
 (function applyAtriHomepageFixes(){
   var ATRI_AVATAR = "https://images7.alphacoders.com/136/1368598.jpeg";
-  var ATRI_BANNER = "https://images4.alphacoders.com/136/1369875.jpeg";
+  var ATRI_BANNER = "/img/atri-in-sunlit-seaside-study.webp";
   var OLD_AVATARS = [
     "https://bu.dusays.com/2023/04/27/64496e511b09c.jpg",
     "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"

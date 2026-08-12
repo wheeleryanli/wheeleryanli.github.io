@@ -442,7 +442,26 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
       description: "收录我翻译整理的 PDF。每一份作品都会提供清晰的版本信息、在线阅读与原文件下载。",
       emptyTitle: "尚未上传译作",
       emptyText: "第一份翻译 PDF 会出现在这里。",
-      items: []
+      items: [
+        {
+          title: "《热物理概念》中文全译本",
+          description: "《Concepts in Thermal Physics》中文全译 PDF，适合在线阅读或下载保存。",
+          date: "2026-08-12",
+          file: "/files/translations/concepts-in-thermal-physics-zh.pdf"
+        },
+        {
+          title: "《固体物理》阿什克罗夫特—默明中文全译本",
+          description: "Ashcroft 与 Mermin《Solid State Physics》中文全译 ElegantBook 版。",
+          date: "2026-08-12",
+          file: "/files/translations/solid-state-physics-ashcroft-mermin-zh.pdf"
+        },
+        {
+          title: "《微分几何学》中文全译本",
+          description: "《Differential Geometry》中文全译 PDF，适合在线阅读或下载保存。",
+          date: "2026-08-12",
+          file: "/files/translations/differential-geometry-zh.pdf"
+        }
+      ]
     },
     "/typesetting/": {
       key: "typesetting",

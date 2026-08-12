@@ -428,3 +428,204 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
     setTimeout(function() { run(document); }, delay);
   });
 })();
+
+(function installPdfColumns(){
+  if (window.__pdfColumnsInstalled) return;
+  window.__pdfColumnsInstalled = true;
+
+  var COLUMN_CONFIG = {
+    "/translations/": {
+      key: "translations",
+      title: "翻译专栏",
+      kicker: "TRANSLATIONS",
+      heading: "我的译作",
+      description: "收录我翻译整理的 PDF。每一份作品都会提供清晰的版本信息、在线阅读与原文件下载。",
+      emptyTitle: "尚未上传译作",
+      emptyText: "第一份翻译 PDF 会出现在这里。",
+      items: []
+    },
+    "/typesetting/": {
+      key: "typesetting",
+      title: "重排专栏",
+      kicker: "TYPESETTING",
+      heading: "我的重排作品",
+      description: "收录我重新排版与视觉整理的 PDF，重点改善公式、图表、字体、页边距与整体阅读体验。",
+      emptyTitle: "尚未上传重排作品",
+      emptyText: "第一份重排 PDF 会出现在这里。",
+      items: []
+    }
+  };
+
+  function normalizePath(value) {
+    try {
+      var path = new URL(value, window.location.origin).pathname.replace(/\/index\.html$/, "/");
+      return path === "/" || /\/$/.test(path) ? path : path + "/";
+    } catch (error) {
+      return "/";
+    }
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function installNavigation() {
+    var entries = [
+      { href: "/translations/", label: "翻译专栏", icon: "anzhiyu-icon-language" },
+      { href: "/typesetting/", label: "重排专栏", icon: "anzhiyu-icon-file-lines" }
+    ];
+
+    document.querySelectorAll("#menus .menus_item_child, #sidebar-menus .menus_item_child").forEach(function(menu) {
+      entries.forEach(function(entry) {
+        if (menu.querySelector('a[href="' + entry.href + '"]')) return;
+        var item = document.createElement("li");
+        item.className = "pdf-column-menu-item";
+        item.innerHTML =
+          '<a class="site-page child faa-parent animated-hover" href="' + entry.href + '">' +
+          '<i class="anzhiyufont ' + entry.icon + ' faa-tada" style="font-size: 0.9em;"></i>' +
+          '<span> ' + entry.label + '</span></a>';
+        menu.appendChild(item);
+      });
+    });
+  }
+
+  function updateHead(config, path) {
+    var fullTitle = config.title + " | 言里";
+    document.title = fullTitle;
+
+    var titleElement = document.querySelector("title");
+    if (titleElement) titleElement.textContent = fullTitle;
+
+    document.querySelectorAll('meta[name="description"], meta[property="og:description"]').forEach(function(meta) {
+      meta.setAttribute("content", config.description);
+    });
+    document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach(function(meta) {
+      meta.setAttribute("content", fullTitle);
+    });
+    document.querySelectorAll('meta[property="og:url"]').forEach(function(meta) {
+      meta.setAttribute("content", window.location.origin + path);
+    });
+
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", window.location.origin + path);
+
+    if (window.GLOBAL_CONFIG_SITE) {
+      window.GLOBAL_CONFIG_SITE.title = config.title;
+      window.GLOBAL_CONFIG_SITE.configTitle = config.title;
+      window.GLOBAL_CONFIG_SITE.pageFillDescription = config.description;
+    }
+  }
+
+  function renderItems(config) {
+    if (!config.items.length) {
+      return [
+        '<div class="pdf-column-empty">',
+        '<div class="pdf-column-empty-icon"><i class="anzhiyufont anzhiyu-icon-file-lines"></i></div>',
+        '<h3>' + escapeHtml(config.emptyTitle) + '</h3>',
+        '<p>' + escapeHtml(config.emptyText) + '</p>',
+        '<span>PDF · 在线阅读 · 原文件下载</span>',
+        '</div>'
+      ].join("");
+    }
+
+    return '<div class="pdf-column-grid">' + config.items.map(function(item) {
+      var cover = item.cover
+        ? '<img src="' + escapeHtml(item.cover) + '" alt="' + escapeHtml(item.title) + ' 封面">'
+        : '<div class="pdf-column-cover-placeholder"><i class="anzhiyufont anzhiyu-icon-file-lines"></i><span>PDF</span></div>';
+      return [
+        '<article class="pdf-column-card">',
+        '<div class="pdf-column-cover">' + cover + '</div>',
+        '<div class="pdf-column-card-body">',
+        '<div class="pdf-column-card-meta"><span>' + escapeHtml(item.date || "") + '</span><span>PDF</span></div>',
+        '<h3>' + escapeHtml(item.title) + '</h3>',
+        '<p>' + escapeHtml(item.description || "") + '</p>',
+        '<div class="pdf-column-actions">',
+        '<a href="' + escapeHtml(item.file) + '" target="_blank" rel="noopener">在线阅读</a>',
+        '<a href="' + escapeHtml(item.file) + '" download>下载 PDF</a>',
+        '</div></div></article>'
+      ].join("");
+    }).join("") + '</div>';
+  }
+
+  function renderColumn(config, path) {
+    var layout = document.getElementById("content-inner");
+    if (!layout) return;
+
+    document.body.setAttribute("data-type", "pdf-column");
+    layout.classList.add("hide-aside", "pdf-column-layout");
+
+    var pageType = document.getElementById("page-type");
+    if (pageType) pageType.value = "pdf-column";
+
+    var pageName = document.getElementById("page-name");
+    if (pageName) pageName.textContent = config.title;
+
+    layout.innerHTML = [
+      '<div id="page" class="pdf-column-page" data-column="' + config.key + '">',
+      '<section class="pdf-column-hero">',
+      '<div class="pdf-column-kicker">' + config.kicker + '</div>',
+      '<h1>' + config.title + '</h1>',
+      '<p>' + config.description + '</p>',
+      '<div class="pdf-column-switch">',
+      '<a href="/translations/"' + (config.key === "translations" ? ' class="active"' : '') + '>翻译专栏</a>',
+      '<a href="/typesetting/"' + (config.key === "typesetting" ? ' class="active"' : '') + '>重排专栏</a>',
+      '</div>',
+      '</section>',
+      '<section class="pdf-column-library">',
+      '<header class="pdf-column-library-head">',
+      '<div><span>PDF LIBRARY</span><h2>' + config.heading + '</h2></div>',
+      '<strong>' + config.items.length + ' 份 PDF</strong>',
+      '</header>',
+      renderItems(config),
+      '</section>',
+      '</div>'
+    ].join("");
+
+    updateHead(config, path);
+  }
+
+  function installHomepageEntries(path) {
+    var existing = document.getElementById("pdf-columns-home");
+    if (path !== "/") {
+      if (existing) existing.remove();
+      return;
+    }
+    if (existing) return;
+
+    var homeTop = document.getElementById("home_top");
+    if (!homeTop) return;
+
+    var section = document.createElement("section");
+    section.id = "pdf-columns-home";
+    section.className = "pdf-columns-home";
+    section.innerHTML = [
+      '<a class="pdf-column-entry pdf-column-entry-translations" href="/translations/">',
+      '<span>TRANSLATIONS</span><h2>翻译专栏</h2>',
+      '<p>我翻译整理的 PDF。</p><strong>进入专栏 →</strong></a>',
+      '<a class="pdf-column-entry pdf-column-entry-typesetting" href="/typesetting/">',
+      '<span>TYPESETTING</span><h2>重排专栏</h2>',
+      '<p>我重新排版与视觉整理的 PDF。</p><strong>进入专栏 →</strong></a>'
+    ].join("");
+    homeTop.insertAdjacentElement("afterend", section);
+  }
+
+  function run() {
+    var path = normalizePath(window.location.href);
+    installNavigation();
+    installHomepageEntries(path);
+    if (COLUMN_CONFIG[path]) renderColumn(COLUMN_CONFIG[path], path);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run, { once: true });
+  } else {
+    run();
+  }
+  window.addEventListener("load", run, { once: true });
+  document.addEventListener("pjax:complete", run);
+})();

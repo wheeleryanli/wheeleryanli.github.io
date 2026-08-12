@@ -471,7 +471,14 @@ var posts=["2025/03/27/hello-world/"];function toRandomPost(){
       description: "收录我重新排版与视觉整理的 PDF，重点改善公式、图表、字体、页边距与整体阅读体验。",
       emptyTitle: "尚未上传重排作品",
       emptyText: "第一份重排 PDF 会出现在这里。",
-      items: []
+      items: [
+        {
+          title: "Geometry of Yang-Mills Fields（杨–米尔斯场的几何）",
+          description: "M. F. Atiyah 的杨–米尔斯场与瞬子几何经典讲义重排本。",
+          date: "2026-08-12",
+          file: "/files/typesetting/geometry-of-yang-mills-fields-retypeset.pdf"
+        }
+      ]
     }
   };
 
